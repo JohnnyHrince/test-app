@@ -31,16 +31,26 @@ module.exports = function getModels(sequelize, Sequelize) {
   const arr = [
     /************************ Information *********************/
     {path: __dirname + '/information.js', sync: true},
+    {path: __dirname + '/car.js', sync: true},
+    {path: __dirname + '/person.js', sync: true},
   ];
 
   const syncTables = [];
+  const db = {
+    Sequelize,
+    sequelize
+  };
 
   _.each(arr, file => {
-    if (file.sync && process.env.RUN_CRON === 'true') {
-      const model = require(path.join(file.path))(sequelize, Sequelize);
-      syncTables.push(model);
-    } else {
-      require(path.join(file.path))(sequelize, Sequelize);
+    const model = require(path.join(file.path))(sequelize, Sequelize);
+    const modelName = path.basename(file.path).replace('.js', '');
+    db[modelName] = model;
+  });
+  
+  // Call associate() if exists
+  Object.keys(db).forEach(modelName => {
+    if (db[modelName]?.associate) {
+      db[modelName].associate(db);
     }
   });
 

@@ -1,0 +1,55 @@
+
+<div class="col-12 mt-2 width-1220">
+    <div class='row'>
+      <div class='col-4'>
+        <button class='btn btn-primary btn-sm' type='button' (click)='addEdit()'>
+          <fa-icon [icon]='faPlus'></fa-icon> Adaugă
+        </button>
+      </div>
+      <div class='col-4'>
+        <h4 class='text-center'>Masina</h4>
+      </div>
+      <div class='col-4'></div>
+    </div>
+  
+    <div class='row'>
+      <table class='table table-hover table-striped table-bordered font-14 p-0'>
+        <thead>
+          <tr>
+            <th class='text-center'>#</th>
+            <th>Denumire marcă</th>
+            <th>Denumire model</th>
+            <th class='text-center'>An fabricație</th>
+            <th class='text-center'>Capacitate (cm³)</th>
+            <th class='text-center'>Taxă (lei)</th>
+            <th class='text-center'>Modificare</th>
+            <th class='text-center'>Ștergere</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor='let car of car.slice(0, limit)' (dblclick)='addEdit(car.id)' class='cursor-pointer'>
+            <td class='text-center'>{{ car.id }}</td>
+            <td>{{ car.marca }}</td>
+            <td>{{ car.model }}</td>
+            <td class='text-center'>{{ car.an_fabricatie }}</td>
+            <td class='text-center'>{{ car.capacitate }}</td>
+            <td class='text-center'>{{ car.taxa }}</td>
+  
+            <td (click)='addEdit(car.id)' class='text-center' matTooltip='Modificare' matTooltipPosition='left'>
+              <fa-icon class='text-primary' [icon]='faEdit'></fa-icon>
+            </td>
+  
+            <td (click)='delete(car)' class='text-center' matTooltip='Ștergere' matTooltipPosition='left'>
+              <fa-icon class='text-danger' [icon]='faTrashAlt'></fa-icon>
+            </td>
+          </tr>
+  
+          <tr *ngIf='!car.length' class='text-center fw-bold'>
+            <td colspan='8'>Date inexistente!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  

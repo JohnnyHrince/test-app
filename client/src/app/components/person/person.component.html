@@ -1,0 +1,59 @@
+
+<div class="col-12 mt-2 width-1220">
+    <div class='row'>
+      <div class='col-4'>
+        <button class='btn btn-primary btn-sm' type='button' (click)='addEdit()'>
+          <fa-icon [icon]='faPlus'></fa-icon> Adaugă
+        </button>
+      </div>
+      <div class='col-4'>
+        <h4 class='text-center'>Persoana</h4>
+      </div>
+      <div class='col-4'></div>
+    </div>
+  
+    <div class='row'>
+      <table class='table table-hover table-striped table-bordered font-14 p-0'>
+        <thead>
+          <tr>
+            <th class='text-center'>#</th>
+            <th>Nume complet</th>
+            <th>CNP</th>
+            <th class='text-center'>Vârsta</th>
+            <th class='text-center'>Lista mașinilor aflate în proprietate</th>
+            <th class='text-center'>Modificare</th>
+            <th class='text-center'>Ștergere</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor='let person of person.slice(0, limit)' (dblclick)='addEdit(person.id)' class='cursor-pointer'>
+            <td class='text-center'>{{ person.id }}</td>
+            <td>{{ person.full_name }}</td>
+            <td>{{ person.cnp }}</td>
+            <td class='text-center'>{{ person.age }}</td>
+            <td>
+              <ul class="mb-0">
+                <li *ngFor="let car of person.cars">
+                  {{ car.marca }} {{ car.model }} ({{ car.an_fabricatie }}) - {{ car.capacitate }} cm³ - {{ car.taxa }} lei
+                </li>
+              </ul>
+            </td>
+  
+            <td (click)='addEdit(person.id)' class='text-center' matTooltip='Modificare' matTooltipPosition='left'>
+              <fa-icon class='text-primary' [icon]='faEdit'></fa-icon>
+            </td>
+  
+            <td (click)='delete(person)' class='text-center' matTooltip='Ștergere' matTooltipPosition='left'>
+              <fa-icon class='text-danger' [icon]='faTrashAlt'></fa-icon>
+            </td>
+          </tr>
+  
+          <tr *ngIf='!person.length' class='text-center fw-bold'>
+            <td colspan='8'>Date inexistente!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  

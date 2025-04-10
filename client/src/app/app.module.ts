@@ -14,6 +14,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { InformationComponent } from './components/information/information.component';
 import { InformationModalComponent } from './components/information/information-modal/information-modal.component';
+import { CarComponent } from './components/car/car.component';
+import { CarModalComponent } from './components/car/car-modal/car-modal.component';
+import { PersonComponent } from './components/person/person.component';
+import { PersonModalComponent } from './components/person/person-modal/person-modal.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 
@@ -23,6 +27,10 @@ import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material
     HeaderComponent,
     InformationComponent,
     InformationModalComponent,
+    CarComponent,
+    CarModalComponent,
+    PersonComponent,
+    PersonModalComponent,
     ConfirmDialogComponent
   ],
   imports: [

@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ id_car ? 'Modificare' : 'Adăugare' }} mașină</h4>
+  </div>
+  
+  <div class="modal-body">
+  
+    <div class="row mb-2">
+      <label class="col-3">Denumire marcă *</label>
+      <div class="col-9">
+        <input name="marca" [(ngModel)]="modal.marca" class="form-control" required maxlength="255" #marca="ngModel" />
+        <div class="text-danger" *ngIf="marca.invalid && marca.touched">Câmpul „Denumire marcă” este obligatoriu.</div>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <label class="col-3">Denumire model *</label>
+      <div class="col-9">
+        <input name="model" [(ngModel)]="modal.model" class="form-control" required maxlength="255" #model="ngModel" />
+        <div class="text-danger" *ngIf="model.invalid && model.touched">Câmpul „Denumire model” este obligatoriu.</div>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <label class="col-3">An fabricație *</label>
+      <div class="col-9">
+        <input name="an_fabricatie" type="number" [(ngModel)]="modal.an_fabricatie" class="form-control" required min="1900" max="2100" #an="ngModel" />
+        <div class="text-danger" *ngIf="an.invalid && an.touched">Câmpul „An fabricație” este obligatoriu (1900–2100).</div>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <label class="col-3">Capacitate cilindrică *</label>
+      <div class="col-9">
+        <input name="capacitate" type="number" [(ngModel)]="modal.capacitate" class="form-control" required #capacitate="ngModel" />
+        <div class="text-danger" *ngIf="capacitate.invalid && capacitate.touched">Câmpul „Capacitate cilindrică” este obligatoriu.</div>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Renunță</button>
+    <button type="button" class="btn btn-success" (click)="save()">Salvează</button>
+  </div>
